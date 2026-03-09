@@ -7,7 +7,7 @@
 #include <string>
 
 class BankAccount {
-private:
+protected:
     int  accountNumber;
     char* accountHolderName; // using dynamic memory for the name
     double balance;
@@ -17,9 +17,11 @@ public:
     BankAccount(int accNum, const std::string& name, double bal);
 
     // --- RULE OF THREE ---
-    ~BankAccount(); // destructor
+    virtual ~BankAccount(); // destructor
     BankAccount(const BankAccount& other); // copy constructor
     BankAccount& operator=(const BankAccount& other); // copy assignment
+
+    virtual void withdraw(double amount);
 
     // --- OVERLOADED OPERATORS ---
     BankAccount& operator +=(double amount); // deposit

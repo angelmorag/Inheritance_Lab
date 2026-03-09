@@ -49,15 +49,20 @@ BankAccount& BankAccount::operator+=(double amount) {
     return *this;
 }
 
-// Withdraw Operator -=
-BankAccount& BankAccount::operator-=(double amount) {
+// Overridden Withdraw
+void BankAccount::withdraw(double amount) {
     if (amount > 0 && balance >= amount) {
         balance -= amount;
     } else {
         cout << "Insufficient funds or invalid amount.\n";
     }
+}
+
+BankAccount& BankAccount::operator-=(double amount) {
+    this->withdraw(amount);
     return *this;
 }
+
 //Comparison Operators
 bool BankAccount::operator==(const BankAccount& other) const {
     return accountNumber == other.accountNumber;
